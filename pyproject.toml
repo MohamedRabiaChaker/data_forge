@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "data-forge"
+version = "0.1.0"
+description = "ETL pipelining tool"
+authors = ["Mohamed Rabii Chaker chakerrabia9@gmail.com"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+apache-airflow="2.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
