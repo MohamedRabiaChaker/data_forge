@@ -1,0 +1,37 @@
+{
+    "dag_id": "shopify_products_to_postgres",
+    "description": "Extract products from Shopify and load to PostgreSQL using OAuth",
+    "schedule_interval": "@daily",
+    "start_date": "2025-01-01",
+    "catchup": false,
+    "tags": ["etl", "shopify", "products", "postgres"],
+    "default_args": {
+        "owner": "airflow",
+        "retries": 2,
+        "retry_delay_minutes": 5
+    },
+    "source": {
+        "type": "shopify",
+        "shopify_conn_id": "shopify_default",
+        "resource": "products",
+        "limit": 250,
+        "status": "active"
+    },
+    "transforms": [
+        {
+            "type": "normalize_columns",
+            "lowercase": true,
+            "replace_spaces": "_",
+            "remove_special_chars": true
+        }
+    ],
+    "destination": {
+        "type": "postgres",
+        "postgres_conn_id": "postgres_default",
+        "schema": "public",
+        "table_name": "shopify_products",
+        "write_mode": "replace",
+        "create_table": true,
+        "temp_table_threshold": 1000
+    }
+}

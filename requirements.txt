@@ -8,3 +8,11 @@ asyncpg
 # Required Airflow providers for Celery executor and authentication
 apache-airflow-providers-celery>=3.3.0
 apache-airflow-providers-fab
+
+# Airflow Providers for ETL Framework
+apache-airflow-providers-postgres>=5.0.0
+apache-airflow-providers-google>=10.26.0
+apache-airflow-providers-http>=4.0.0
+
+# Shopify API integration
+requests>=2.31.0

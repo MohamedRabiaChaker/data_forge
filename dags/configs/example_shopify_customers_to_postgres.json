@@ -1,0 +1,36 @@
+{
+    "dag_id": "shopify_customers_to_postgres",
+    "description": "Extract customers from Shopify and load to PostgreSQL using OAuth",
+    "schedule_interval": "@daily",
+    "start_date": "2025-01-01",
+    "catchup": false,
+    "tags": ["etl", "shopify", "customers", "postgres"],
+    "default_args": {
+        "owner": "airflow",
+        "retries": 2,
+        "retry_delay_minutes": 5
+    },
+    "source": {
+        "type": "shopify",
+        "shopify_conn_id": "shopify_default",
+        "resource": "customers",
+        "limit": 250
+    },
+    "transforms": [
+        {
+            "type": "normalize_columns",
+            "lowercase": true,
+            "replace_spaces": "_",
+            "remove_special_chars": true
+        }
+    ],
+    "destination": {
+        "type": "postgres",
+        "postgres_conn_id": "postgres_default",
+        "schema": "public",
+        "table_name": "shopify_customers",
+        "write_mode": "replace",
+        "create_table": true,
+        "temp_table_threshold": 1000
+    }
+}

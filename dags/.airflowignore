@@ -1,1 +1,9 @@
 src/
+tasks/
+hooks/
+factories/
+configs/
+__pycache__/
+*.pyc
+test_*.py
+README.md

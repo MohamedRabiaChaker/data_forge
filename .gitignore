@@ -6,3 +6,4 @@ airflow-webserver.pid
 webserver_config.py
 
 
+google-service-account.json
