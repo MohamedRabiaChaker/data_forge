@@ -1,9 +1,0 @@
-__pycache__
-logs/
-.env
-airflow.cfg
-airflow-webserver.pid
-webserver_config.py
-
-
-google-service-account.json
